@@ -1,21 +1,34 @@
-// https://api.openbrewerydb.org/breweries
-let url="https://api.openbrewerydb.org/breweries";
-
-fetchDataAndShowData(url);
-
-
-
-
+document.querySelector("#search-btn").addEventListener("click",function(){
+    
+    let searchText=document.querySelector("#search").value;
+    // console.log(searchText);
+    let url=`https://api.openbrewerydb.org/breweries?by_name=${searchText}`;
+    fetchDataAndShowData(url);
+});
 
 
 async function fetchDataAndShowData(url){
     let res=await fetch(url);
     let result=await res.json();
+
     // console.log(result);
+    document.querySelector("#container").innerHTML=`<div id="data-container">
+    <table>
+       <tr>
+           <th>Name</th>
+           <th>Brewery Type</th>
+           <th>City</th>
+           <th>State</th>
+       </tr> 
+    </table>
+
+</div>`;
     displayData(result);
 
 
 }
+
+
 
 function displayData(data){
     data.forEach(breweryData => {
@@ -51,7 +64,3 @@ function displayData(data){
 
     });
 }
-
-
-
-
