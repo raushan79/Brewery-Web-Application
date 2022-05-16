@@ -36,8 +36,13 @@ function displayData(data){
         _state.textContent=state;
 
         let moreDetail=document.createElement("button");
-        moreDetail.setAttribute("onClick",detailsPage(id))
-        moreDetail.textContent="More Details"
+       
+        moreDetail.textContent="More Details";
+        moreDetail.setAttribute("id","more-detail");
+        moreDetail.addEventListener("click",function(){
+            localStorage.setItem("id",id);
+            location.href="brewery Page.html";
+        });
         
        
 
@@ -50,6 +55,4 @@ function displayData(data){
 
 
 
-function detailsPage(id){
-    console.log(id);
-}
+
